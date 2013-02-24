@@ -1,0 +1,1755 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>はやわかり reStructuredText</title>
+    <link rel="stylesheet" href="quickref.css" type="text/css" />
+  </head>
+
+
+  <body>
+    <h1>はやわかり <span class="r">re</span><span class="s">Structured</span><span class="t">Text</span></h1>
+
+    <!-- Caveat: if you're reading the HTML for the examples, -->
+    <!-- beware that it was hand-generated, not by Docutils/ReST.  -->
+
+    <table class="flist">
+      <tbody>
+        <tr>
+          <td>著者: </td>
+          <td>
+            <a href="http://www.tibsnjoan.co.uk/">Tibs</a>
+            (<a href="mailto:tibs@tibsnjoan.co.uk"><tt>tibs@tibsnjoan.co.uk</tt></a>)、 
+            David Goodger
+            (<a href="mailto:goodger@python.org">goodger@python.org</a>)
+          </td>
+        </tr>
+        <tr>
+          <td>英語原版: </td>
+          <td><a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">Quick reStructuredText</a></td>
+        </tr>
+        <tr>
+          <td>バージョン:</td>
+          <td>2004/10/05 01:22:01</td>
+        </tr>
+        <tr>
+          <td>著作権:</td>
+          <td>This document has been placed in the public domain.</td>
+        </tr>
+        <tr>
+          <td>翻訳者:</td>
+          <td>瀬戸山 春輝 <a href="mailto:haruki&#64;planewave.org">haruki&#64;planewave.org</a></td>
+        </tr>
+        <tr>
+          <td>翻訳著作権:</td>
+          <td><a href="http://creativecommons.org/licenses/by/2.0/jp/">クリエイティブ・コモンズ 帰属ライセンス</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      本マークアップ記法の完全な詳細は <a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>
+      のページに示されています。このテキストは、覚書としての性格の文書です。
+    </p>
+    <p>
+      "(<a href="#details">詳細</a>)" というリンクを辿ると
+      <a href="restructuredtext.html">
+      reStructuredText 仕様書</a>を参照できます。
+      ただし、相対リンクとなっていますので、リンク切れの場合は、
+      <a href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">
+      原版の "Quick reStructuredText"</a> から参照してください。
+    </p>
+    
+    <h2><a name="contents">目次</a></h2>
+
+    <ul>
+      <li><a href="#inline-markup">インライン マークアップ</a></li>
+      <li><a href="#escaping">バックスラッシュによるエスケープ</a></li>
+      <li><a href="#section-structure"> 章立ての構造</a></li>
+      <li><a href="#paragraphs">段落</a></li>
+      <li><a href="#bullet-lists">記号つきリスト</a></li>
+      <li><a href="#enumerated-lists">番号つきリスト</a></li>
+      <li><a href="#definition-lists">定義リスト</a></li>
+      <li><a href="#field-lists">フィールドリスト</a></li>
+      <li><a href="#option-lists">オプションリスト</a></li>
+      <li><a href="#literal-blocks">整形済みブロック</a></li>
+      <li><a href="#line-blocks">ラインブロック</a></li>
+      <li><a href="#block-quotes">引用</a></li>
+      <li><a href="#doctest-blocks">Doctestブロック</a></li>
+      <li><a href="#tables">表</a></li>
+      <li><a href="#transitions">区切り線</a></li>
+      <li><a href="#explicit-markup">明示的マークアップ</a>
+      <ul>
+        <li><a href="#footnotes">脚注</a></li>
+        <li><a href="#citations">出典</a></li>
+        <li><a href="#hyperlink-targets">リンクターゲット</a>
+          <ul>
+            <li><a href="#external-hyperlink-targets">外部ターゲット</a></li>
+            <li><a href="#internal-hyperlink-targets">内部ターゲット</a></li>
+            <li><a href="#indirect-hyperlink-targets">間接ターゲット</a></li>
+            <li><a href="#implicit-hyperlink-targets">暗黙ターゲット</a></li>
+          </ul>
+        </li>
+        <li><a href="#directives">ディレクティブ</a></li>
+        <li><a href="#substitution-references-and-definitions">代入参照とその定義</a></li>
+        <li><a href="#comments">コメント</a></li>
+        </ul>
+      </li>
+      <li><a href="#getting-help">助けを得たい場合は</a></li>
+    </ul>
+
+    <h2><a href="#contents" name="inline-markup" class="backref">インライン マークアップ</a></h2>
+
+    <p>
+      (<a href="restructuredtext.html#inline-markup">詳細</a>)
+    </p>
+    <p>
+      インラインマークアップを行うことで、文書中の語句に文字スタイル
+      （斜体や太字など）を設定したり、リンクなどの機能を加えたりすることが
+      できます。
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr bgcolor="#99ccff">
+          <th>プレーンテキスト</th>
+          <th>変換結果の例</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td nowrap="nowrap"><samp>*強調*</samp></td>
+          <td><em>強調</em></td>
+          <td>通常、斜体で表示されます</td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>**より強い強調**</samp></td>
+          <td><strong>より強い強調</strong></td>
+          <td>通常、太字で表示されます</td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>`解釈済みテキスト`</samp></td>
+          <td>(右欄参照)</td>
+          <td>
+            解釈済みテキストの意味および表示は、ドメインやアプリケーションに
+            依ります。索引の見出し語や、プログラム中の識別子などとして使われます。
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>``インライン リテラル``</samp></td>
+          <td><code>インライン 
+          リテラル</code></td>
+          <td>
+          通常、等幅テキストで表示されます。空白文字はそのまま表示されます。
+          改行は表示されません。
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>単純参照_</samp></td>
+          <td><a href="#hyperlink-targets">単純参照</a></td>
+          <td>
+            リンクにします。
+            くわしくは<a href="#hyperlink-targets">リンクの項</a>を見よ。
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>`フレーズ参照`_</samp></td>
+          <td><a href="#hyperlink-targets">フレーズ参照</a></td>
+          <td>
+            空白文字や句読点を含むフレーズをリンクにするには
+            バッククォートで囲む必要があります。
+            くわしくは<a href="#hyperlink-targets">リンクの項</a>を見よ。
+          </td>
+        </tr>
+        <tr>
+        <td nowrap="nowrap"><samp>無名参照__</samp></td>
+          <td><a href="#hyperlink-targets">無名参照</a></td>
+          <td>
+            単純参照およびフレーズ参照のどちらでも、
+            アンダースコアを2つにすると、参照テキストをターゲット記述の
+            際に再度書く必要がない無名の参照になります。
+            くわしくは<a href="#hyperlink-targets">リンクの項</a>を見よ。
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>_`インライン内部ターゲット`</samp></td>
+          <td><a name="inline-internal-target">インライン内部ターゲット</a></td>
+          <td>
+            文書中の相互参照のターゲットになります。
+            くわしくは<a href="#hyperlink-targets">リンクの項</a>を見よ。
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>|代入参照|</samp></td>
+          <td>(右欄参照)</td>
+          <td>
+            <a href="#substitution-references-and-definitions">代入の定義</a>
+            に従って、結果が代入されます。テキスト、画像、リンクおよび
+            それらの組み合わせにすることができます。
+          </td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>脚注参照 [1]_</samp></td>
+          <td>脚注参照 <sup><a href="#footnotes">1</a></sup></td>
+          <td>くわしくは<a href="#footnotes">脚注</a>を見よ。</td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>出典参照 [CIT2002]_</samp></td>
+          <td>出典参照 <a href="#citations">[CIT2002]</a></td>
+          <td>くわしくは<a href="#citations">出典</a>を見よ。</td>
+        </tr>
+        <tr>
+          <td nowrap="nowrap"><samp>http://docutils.sf.net/</samp></td>
+          <td><a href="http://docutils.sf.net/">http://docutils.sf.net/</a></td>
+          <td>単独形のリンク</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      アスタリスク (*) やバッククオート (`)、縦棒 (|)、アンダースコア (_)は
+      インラインマークアップの指示記号として使われます。
+      アスタリスクおよびバッククオート、縦棒は、マークアップしたい語句を
+      前後で囲んで使用します。
+      このとき、指示記号の前後には空白文字もしくは他の指示記号を置く必要があります。
+      また、指示記号の内側直後には空白文字を置いてはいけません。
+      インラインの指示記号自体を通常の文字として使いたい場合は、
+      （バックスラッシュで）<a href="#escaping">エスケープする</a>か、
+      （バッククオート２つで）囲むかします。
+    </p>
+    <p>
+      くわしくは、インラインマークアップに際して（インラインマークアップの）
+      開始文字と終了文字が従うルールは reStructuredText 仕様書で
+      以下の通り定義されています。
+    </p>
+    <ol>
+      <li>
+        開始文字は、テキストブロックの最初、もしくは
+        空白文字または <samp>' " ( [ { &lt;</samp> のいずれかの文字の
+        直後に置くことができます。
+      </li>
+      <li>
+        開始文字の直後には、空白文字以外の文字が続きます。
+      </li>
+      <li>
+        終了文字の直前には、空白文字を置くことができません。
+      </li>
+      <li>
+        終了文字は、テキストブロックの最後、もしくは
+        空白文字または <samp>' " ( [ { &lt;</samp> のいずれかの文字の
+        直前に置くことができます。
+      </li>
+      <li>
+        開始文字の直前が <samp>' " ( [ { &lt;</samp> のいずれかの場合は、
+        開始文字の直後に対応する文字 <samp>' " ) ] } &gt;</samp> を
+        置くことができません。
+      </li>
+      <li>
+        終了文字と開始文字の間には、一文字以上はさまれている
+        必要があります。
+      </li>
+      <li>
+        <a href="#escaping">エスケープ無しの</a>バックスラッシュが
+        開始文字または終了文字の直前に置かれた場合、マークアップだと
+        認識されません。
+        ただし、インラインリテラルの終了文字の直前だけは例外です。
+      </li>
+    </ol>
+
+    <p>
+      インラインマークアップは入れ子にすることができません。
+      （インラインリテラルの内部には、マークアップの指示記号を
+      置くことができますが、マークアップとしての処理は
+      当然行われません。）
+    </p>
+    
+    <h2>
+      <a href="#contents" name="escaping" class="backref">
+        バックスラッシュによるエスケープ
+      </a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#escaping-mechanism">詳細</a>)
+    </p>
+    <p>
+      バックスラッシュ (\) を
+      マークアップの指示記号の直前に置くと、それらの意味は無視され、
+      元の文字自体が得られます。
+      バックスラッシュ文字を得るには、バックスラッシュを繰り返しします("\\")。
+      以下に例を示します。
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">reStructuredText 中での記法</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>
+            <samp>*escape*&#160;``with``&#160;"\"</samp>
+          </td><td><em>escape</em> <samp>with</samp> ""
+        </td></tr>
+        <tr><td>
+            <samp>\*escape*&#160;\``with``&#160;"\\"</samp>
+          </td><td>*escape* ``with`` "\"
+        </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Python の文字列を reStructuredText に渡すためには、
+      バックスラッシュ文字をエスケープする必要があるでしょう。
+      raw strings を使うのがもっとも簡単な方法です。
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">Python 文字列</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>
+            <samp>r"""\*escape*&#160;\`with`&#160;"\\""""</samp>
+          </td><td>*escape* `with` "\"
+        </td></tr><tr><td>
+            <samp>&#160;"""\\*escape*&#160;\\`with`&#160;"\\\\""""</samp>
+          </td><td>*escape* `with` "\"
+        </td></tr><tr><td>
+            <samp>&#160;"""\*escape*&#160;\`with`&#160;"\\""""</samp>
+          </td><td><em>escape</em> with ""
+        </td></tr>
+      </tbody>
+    </table>
+
+    <h2>
+      <a href="#contents" name="section-structure" class="backref">
+        章立ての構造
+      </a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#sections">詳細</a>)
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>========</samp>
+            <br /><samp>タイトル</samp>
+            <br /><samp>========</samp>
+            <br /><samp>サブタイトル</samp>
+            <br /><samp>-------------</samp>
+            <br /><samp>タイトル類は非英数の7ビットアスキー文字で</samp>
+            <br /><samp>下線（または上下線）を引きます。</samp>
+            <br /><samp>次の文字の使用が推奨されます。</samp>
+            <br /><samp>``=&#160;-&#160;`&#160;:&#160;'&#160;"&#160;~&#160;^&#160;_&#160;*&#160;+&#160;#&#160;&lt;&#160;&gt;`` 。</samp>
+            <br /><samp>上下線は、タイトルのテキストと同じか長くします。</samp>
+            <br /><samp></samp>
+            <br /><samp>最上部に書かれた、同し線種での繰り返しの無いタイトル（</samp>
+            <br /><samp>（およびサブタイトル）は、文書全体のタイトル</samp>
+            <br /><samp>（およびサブタイトル）として取り扱われます。</samp>
+          </td>
+          <td>
+            <p>
+              <font size="+2"><strong>タイトル</strong></font>
+            </p>
+            <p>
+              <font size="+1"><strong>サブタイトル</strong></font>
+            </p>
+            <p>
+              タイトル類は非英数の7ビットアスキー文字で
+              下線（または上下線）を引きます。
+              次の文字の使用が推奨されます。
+              <samp>= - ` : ' " ~ ^ _ * + # &lt; &gt;</samp> 。
+              上下線は、タイトルのテキストと同じか長くします。
+            </p>
+            <p>
+              最上部に書かれた、同し線種での繰り返しの無い
+              タイトル（およびサブタイトル）は、
+              文書全体のタイトル（およびサブタイトル）として
+              取り扱われます。
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <h2>
+      <a href="#contents" name="paragraphs" class="backref">段落</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#paragraphs">詳細</a>)
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>
+              <samp>ここが段落です。</samp>
+            </p>
+            <p>
+              <samp>段落は、左の端を</samp>
+              <br /><samp>そろえて記述します。通常、</samp>
+              <br /><samp>空行で区切られます。</samp>
+            </p>
+          </td>
+          <td>
+            <p>ここが段落です。</p>
+            <p>
+              段落は、左の端を
+              そろえて記述します。通常、
+              空行で区切られます。
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <h2>
+      <a href="#contents" name="bullet-lists" class="backref">記号つきリスト</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#bullet-lists">詳細</a>)
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <samp>記号つきリスト</samp>
+
+          <p><samp>-&#160;アイテム&#160;1&#160;です</samp>
+          <br /><samp>-&#160;アイテム&#160;2&#160;です</samp>
+
+          </p><p><samp>-&#160;リスト記号は"-" および "*", "+" が使用できます。</samp>
+          <br /><samp>&#160;&#160;複数行にわたる場合は、記号と空白文字の後に、</samp>
+          <br /><samp>&#160;&#160;左端をそろえて記述します。</samp>
+
+          </p><p><samp>最初のアイテムの前および最後のアイテムの後には空行が</samp>
+          <br /><samp>必要です。アイテム間の空行は任意です。</samp>
+          </p>
+        </td>
+        <td>
+          記号つきリスト
+          <ul>
+            <li>アイテム 1 です</li>
+            <li>アイテム 2 です</li>
+            <li>
+              リスト記号は"-" および "*", "+" が使用できます。
+              複数行にわたる場合は、記号と空白文字の後に、
+              左端をそろえて記述します。
+            </li>
+          </ul>
+          <p>
+            最初のアイテムの前および最後のアイテムの後には空行が
+            必要です。アイテム間の空行は任意です。
+          </p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h2>
+      <a href="#contents" name="enumerated-lists" class="backref">番号つきリスト</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#enumerated-lists">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>番号つきリスト</samp>
+
+            <p><samp>3.&#160;はじめのアイテム</samp>
+            <br /><samp>4.&#160;次のアイテム</samp>
+            <br /><samp>5.&#160;番号は、アラビア数字、単一の英字、もしくは</samp>
+            <br /><samp>&#160;&#160;&#160;ローマ数字が使用できます。</samp>
+            <br /><samp>6.&#160;アイテムは、連続した数で番号付けするべきです。</samp>
+            <br /><samp>&#160;&#160;&#160;ただし、必ずしも１からはじめる必要はありません</samp>
+            <br /><samp>&#160;&#160;&#160;（フォーマッタがによっては任意の番号からの</samp>
+            <br /><samp>&#160;&#160;&#160;開始を適切に扱えないこともあります。）</samp>
+            </p>
+          </td>
+          <td>
+            番号つきリスト
+            <ol type="1">
+              <li value="3">はじめのアイテム</li>
+              <li>次のアイテム</li>
+              <li>
+                番号は、アラビア数字、単一の英字、もしくはローマ数字
+                が使用できます。
+              </li>
+              <li>
+                アイテムは、連続した数で番号付けするべきです。ただし、
+                必ずしも１からはじめる必要はありません
+                （フォーマッタがによっては任意の番号からの
+                開始を適切に扱えないこともあります。）
+              </li>
+            </ol>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <h2>
+      <a href="#contents" name="definition-lists" class="backref">定義リスト</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#definition-lists">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>定義リスト</samp>
+            <br />
+            <br /><samp>それは何？</samp>
+            <br /><samp>&#160;&#160;定義リストは、用語とその定義を示します。</samp>
+            <br />
+            <br /><samp>どのようにして？</samp>
+            <br /><samp>&#160;&#160;「用語」は 1 行のテキストです。</samp>
+            <br /><samp>&#160;&#160;「定義」は、段落などのボディ要素で、</samp>
+            <br /><samp>&#160;&#160;複数の段落を記述することもできます。</samp>
+            <br /><samp>&#160;&#160;用語との間に空行を入れないで、右側に</samp>
+            <br /><samp>&#160;&#160;インデントさせます。</samp>
+          </td>
+          <td>
+            定義リスト
+            <dl>
+              <dt><strong>それは何？</strong></dt>
+              <dd>
+                定義リストは、用語とその定義を示します。
+              </dd>
+              <dt><strong>どのようにして？</strong></dt>
+              <dd>
+                「用語」は 1 行のテキストです。
+                「定義」は、段落などのボディ要素で、
+                複数の段落を記述することもできます。
+                用語との間に空行を入れないで、右側に
+                インデントさせます。
+              </dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <h2>
+      <a href="#contents" name="field-lists" class="backref">フィールドリスト</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#field-lists">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>:著者:</samp>
+            <br /><samp>&#160;&#160;&#160;&#160;Tony&#160;J.&#160;(Tibs)&#160;Ibbs,</samp>
+            <br /><samp>&#160;&#160;&#160;&#160;David&#160;Goodger</samp>
+
+            <p><samp>&#160;&#160;&#160;&#160;(および多くの親切な方々)</samp>
+
+            </p><p><samp>:バージョン:&#160;1.0&#160;of&#160;2001/08/08</samp>
+            <br /><samp>:献呈:&#160;我が父へ</samp>
+            </p>
+          </td>
+          <td>
+            <table class="list">
+              <tbody>
+                <tr>
+                  <td><strong>著者:</strong></td>
+                  <td>
+                    Tony J. (Tibs) Ibbs,
+                    David Goodger
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>(および多くの親切な方々)</td>
+                </tr>
+                <tr>
+                  <td><strong>バージョン:</strong></td>
+                  <td>1.0 of 2001/08/08</td>
+                </tr>
+                <tr>
+                  <td><strong>献呈:</strong></td><td>我が父へ.
+                   </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      フィールドリストは、拡張文法として、
+      <a href="#directives">ディレクティブ</a>に対するオプションや
+      後での処理を意図したデータベース系の記録に対して用いられます。
+      また、文章中では、通常の2列の表としても使われます。
+    </p>
+    
+    <h2>
+      <a href="#contents" name="option-lists" class="backref">オプションリスト</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#option-lists">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト</th>
+          <th width="50%">変換結果の例</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>
+            <samp>
+            -a&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;command-line&#160;option&#160;"a"
+            <br />-b&#160;file&#160;&#160;&#160;&#160;&#160;&#160;&#160;options&#160;can&#160;have&#160;arguments
+            <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;and&#160;long&#160;descriptions
+            <br />--long&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;options&#160;can&#160;be&#160;long&#160;also
+            <br />--input=file&#160;&#160;long&#160;options&#160;can&#160;also&#160;have
+            <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;arguments
+            <br />/V&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;DOS/VMS-style&#160;options&#160;too
+            </samp>
+            </p>
+          </td>
+          <td>
+            <table class="list" width="100%">
+              <tbody>
+                <tr>
+                  <td width="30%"><samp>-a</samp></td>
+                  <td>command-line option "a"</td>
+                </tr>
+                <tr>
+                  <td><samp>-b <i>file</i></samp>
+                  </td><td>options can have arguments and long descriptions
+                  </td>
+                </tr>
+                <tr>
+                  <td><samp>--long</samp>
+                  </td><td>options can be long also
+                  </td>
+                </tr>
+                <tr>
+                  <td><samp>--input=<i>file</i></samp>
+                  </td><td>long options can also have arguments
+                  </td>
+                </tr>
+                <tr>
+                  <td><samp>/V</samp>
+                  </td><td>DOS/VMS-style options too
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      オプションとその説明の間には、2つ以上の空白文字を置きます。
+    </p>
+    
+    
+    
+    <h2>
+      <a href="#contents" name="literal-blocks" class="backref">整形済みブロック</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#literal-blocks">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>2つのコロンだけの段落は、後続のインデントされた、</samp>
+            <br /><samp>もしくはクオートされたテキストが</samp>
+            <br /><samp>整形済みブロックであることを示します。</samp>
+            <br />
+            <br /><samp>::</samp>
+            <br />
+            <br /><samp>&#160;&#160;空白文字、改行、空行および</samp>
+            <br /><samp>&#160;&#160;（*this* や \this などの）すべての</samp>
+            <br /><samp>&#160;&#160;マークアップはそのまま表示されます。</samp>
+            <br />
+            <br /><samp>&#160;&#160;2つのコロンだけの段落は、削除</samp>
+            <br /><samp>&#160;&#160;されます。</samp>
+            <br />
+            <br /><samp>``::``&#160;を段落の最後に記述することも</samp>
+            <br /><samp>できます。直前に空白文字がある場合は</samp>
+            <br /><samp>``::``&#160; は削除されます。直前が</samp>
+            <br /><samp>通常の文字である場合は、コロン1つに変換されます。例::</samp>
+            <br />
+            <br /><samp>&#160;&#160;この形式はとても便利です。</samp>
+            <br />
+            <br /><samp>整形済みブロックは、テキストが元のインデントの</samp>
+            <br /><samp>深さに戻るまで有効となります。</samp>
+            <br /><samp>つまり、以下のようにも記述できます。 ::</samp>
+            <br />
+            <br /><samp>&#160;&#160;&#160;&#160;&#160;&#160;ここからはじめ</samp>
+            <br /><samp>&#160;&#160;&#160;&#160;ここへ続き</samp>
+            <br /><samp>&#160;&#160;ここで終わる</samp>
+            <br />
+            <br /><samp>各行ごとにクオートされたブロックは、特に明示する</samp>
+            <br /><samp>こと無しに、整形済みブロックとして扱われます。</samp>
+            <br />
+            <br /><samp>&gt;&#160;メールの引用や</samp>
+            <br /><samp>&gt;&#160;Haskell言語のプログラムに有効です</samp>
+          </td>
+          <td>
+            <p>
+              2つのコロンだけの段落は、後続のインデントされた、
+              もしくはクオートされたテキストが
+              整形済みブロックであることを示します。
+            </p>
+            <pre>
+  空白文字、改行、空行および
+  （*this* や \this などの）すべての
+  マークアップはそのまま表示されます。
+  
+  2つのコロンだけの段落は、削除
+  されます。
+            </pre>
+            <p>
+              <samp>::</samp> を段落の最後に記述することも
+              できます。直前に空白文字がある場合は
+              <samp>::</samp> は削除されます。直前が
+              通常の文字である場合は、コロン1つに変換されます。
+              例:
+            </p>
+            <pre>  
+  この形式はとても便利です。
+            </pre>
+            <p>
+              整形済みブロックは、テキストが元のインデントの
+              深さに戻るまで有効となります。
+              つまり、以下のようにも記述できます。
+            </p>
+            <pre>
+      ここからはじめ
+    ここへ続き
+  ここで終わる</pre>
+            <p>
+              各行ごとにクオートされたブロックは、特に明示する
+              こと無しに、整形済みブロックとして扱われます。
+            </p>
+            <pre>
+  &gt; メールの引用や
+  &gt; Haskell言語のプログラムに有効です</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <h2>
+      <a href="#contents" name="line-blocks" class="backref">ラインブロック</a>
+    </h2>
+
+    <p>(<a href="restructuredtext.html#line-blocks">詳細</a>)
+
+    </p><p></p><table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr></thead>
+      <tbody>
+    <tr>
+      <td>
+        <samp>|&#160;ラインブロックは、アドレスや韻文、</samp>
+        <br /><samp>|&#160;装飾の不要なリストなどに対して使われます。</samp>
+        <br /><samp>|</samp>
+        <br /><samp>|&#160;各行は縦棒 ("|") ではじめます。</samp>
+        <br /><samp>|&#160;&#160;&#160;&#160;&#160;改行と行頭のインデントは</samp>
+        <br /><samp>|&#160;&#160;&#160;&#160;&#160;そのままになります。</samp>
+        <br /><samp>|&#160;長い文を複数行に別けて書くこともできます。</samp>
+        <br /><samp>&#160;&#160;その場合、行頭の縦棒のところを</samp>
+        <br /><samp>&#160;&#160;空白文字にします。</samp>
+
+      </td>
+      <td>
+        <div class="line-block">
+          <div class="line">ラインブロックは、アドレスや韻文、</div>
+          <div class="line">装飾の不要なリストなどに対して使われます。</div>
+          <div class="line"><br /></div>
+          <div class="line">各行は縦棒 ("|") ではじめます。</div>
+
+          <div class="line-block">
+            <div class="line">改行と行頭のインデントは</div>
+            <div class="line">そのままになります。</div>
+          </div>
+          <div class="line">
+            長い文を複数行に別けて書くこともできます。
+            その場合、行頭の縦棒のところを
+            空白文字にします。
+          </div>
+        </div>
+      </td>
+    </tr></tbody></table>
+
+    <h2><a href="#contents" name="block-quotes" class="backref">引用</a></h2>
+
+    <p>
+      (<a href="restructuredtext.html#block-quotes">詳細</a>)
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>引用のブロックは</samp>
+
+            <p>
+              <samp>&#160;&#160;&#160;&#160;インデントした段落を書くだけです。</samp>
+            </p>
+            <p>
+              <samp>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;入れ子にもできます。</samp>
+            </p>
+           </td>
+           <td>
+              引用のブロックは
+              <blockquote>
+                <p>
+                  インデントした段落を書くだけです。
+                </p>
+                <blockquote>
+                <p>
+                  入れ子にもできます。
+                </p>
+              </blockquote>
+            </blockquote>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  
+    <h2><a href="#contents" name="doctest-blocks" class="backref">Doctest ブロック</a></h2>
+
+    <p>
+      (<a href="restructuredtext.html#doctest-blocks">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+        <th width="50%">プレーンテキスト
+        </th><th width="50%">変換結果の例
+        </th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>
+              <samp>Doctest&#160;blocks&#160;are&#160;interactive
+              <br />Python&#160;sessions.&#160;They&#160;begin&#160;with
+              <br />"``&gt;&gt;&gt;``"&#160;and&#160;end&#160;with&#160;a&#160;blank&#160;line.</samp>
+            </p>
+            <p>
+              <samp>&gt;&gt;&gt;&#160;print&#160;"This&#160;is&#160;a&#160;doctest&#160;block."
+              <br />This&#160;is&#160;a&#160;doctest&#160;block.</samp>
+            </p>
+          </td>
+          <td>
+            <p>
+              Doctest blocks are interactive
+              Python sessions. They begin with
+              "<samp>&gt;&gt;&gt;</samp>" and end with a blank line.
+            </p>
+            <p>
+              <samp>&gt;&gt;&gt;&#160;print&#160;"This&#160;is&#160;a&#160;doctest&#160;block."
+              <br />This&#160;is&#160;a&#160;doctest&#160;block.</samp>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      「<a href="http://www.python.org/doc/current/lib/module-doctest.html">doctest</a>
+      モジュールは、モジュールのドキュメンテーション文字列 (docstring) から、
+      対話的 Python セッションのように見えるテキストを探しだし、
+      これらのセッションを実際に実行して、そこに書かれている通りに動作するか検証します。」
+      (Python ライブラリリファレンス より)
+    </p>
+    
+    
+    <h2>
+        <a href="#contents" name="tables" class="backref">表</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#tables">詳細</a>)
+    </p>
+    
+    <p>
+      reStructuredText には、表（テーブル）を記述する2通りの記法があります。
+      グリッドテーブルは良く出来ていますが作成が若干大変です。
+      シンプルテーブルは作成しやすいですが、（列の結合ができないなど）
+      機能が制限されます。
+    </p>
+
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td>
+<p><samp>グリッドテーブル</samp></p>
+
+<p><samp>+------------+------------+-----------+</samp>
+<br /><samp>|&#160;Header&#160;1&#160;&#160;&#160;|&#160;Header&#160;2&#160;&#160;&#160;|&#160;Header&#160;3&#160;&#160;|</samp>
+<br /><samp>+============+============+===========+</samp>
+<br /><samp>|&#160;body&#160;row&#160;1&#160;|&#160;column&#160;2&#160;&#160;&#160;|&#160;column&#160;3&#160;&#160;|</samp>
+<br /><samp>+------------+------------+-----------+</samp>
+<br /><samp>|&#160;body&#160;row&#160;2&#160;|&#160;Cells&#160;may&#160;span&#160;columns.|</samp>
+<br /><samp>+------------+------------+-----------+</samp>
+<br /><samp>|&#160;body&#160;row&#160;3&#160;|&#160;Cells&#160;may&#160;&#160;|&#160;-&#160;Cells&#160;&#160;&#160;|</samp>
+<br /><samp>+------------+&#160;span&#160;rows.&#160;|&#160;-&#160;contain&#160;|</samp>
+<br /><samp>|&#160;body&#160;row&#160;4&#160;|&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;|&#160;-&#160;blocks.&#160;|</samp>
+<br /><samp>+------------+------------+-----------+</samp></p>
+      </td><td>
+        <p>グリッドテーブル</p>
+        <table class="gtable" border="1">
+          <thead>
+            <tr>
+              <th>Header 1
+              </th><th>Header 2
+              </th><th>Header 3
+            </th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>body row 1
+              </td><td>column 2
+              </td><td>column 3
+            </td></tr>
+            <tr>
+              <td>body row 2
+              </td><td colspan="2">Cells may span columns.
+            </td></tr>
+            <tr>
+              <td>body row 3
+              </td><td rowspan="2">Cells may<br />span rows.
+              </td><td rowspan="2">
+                <ul>
+                  <li>Cells
+                  </li><li>contain
+                  </li><li>blocks.
+                </li></ul>
+            </td></tr>
+            <tr>
+              <td>body row 4
+            </td></tr>
+        </tbody></table>
+    </td></tr><tr>
+      <td>
+<p><samp>シンプルテーブル</samp></p>
+
+<p><samp>=====&#160;&#160;=====&#160;&#160;======</samp>
+<br /><samp>&#160;&#160;&#160;Inputs&#160;&#160;&#160;&#160;&#160;Output</samp>
+<br /><samp>------------&#160;&#160;------</samp>
+<br /><samp>&#160;&#160;A&#160;&#160;&#160;&#160;&#160;&#160;B&#160;&#160;&#160;&#160;A&#160;or&#160;B</samp>
+<br /><samp>=====&#160;&#160;=====&#160;&#160;======</samp>
+<br /><samp>False&#160;&#160;False&#160;&#160;False</samp>
+<br /><samp>True&#160;&#160;&#160;False&#160;&#160;True</samp>
+<br /><samp>False&#160;&#160;True&#160;&#160;&#160;True</samp>
+<br /><samp>True&#160;&#160;&#160;True&#160;&#160;&#160;True</samp>
+<br /><samp>=====&#160;&#160;=====&#160;&#160;======</samp></p>
+
+      </td><td>
+        <p>シンプルテーブル</p>
+        <table class="stable" border="1">
+          <colgroup><col width="31%" /><col width="31%" /><col width="38%" /></colgroup>
+          <thead>
+            <tr>
+              <th colspan="2">Inputs
+              </th><th>Output
+            </th></tr><tr>
+              <th>A
+              </th><th>B
+              </th><th>A or B
+          </th></tr></thead><tbody>
+            <tr>
+              <td>False
+              </td><td>False
+              </td><td>False
+            </td></tr><tr>
+              <td>True
+              </td><td>False
+              </td><td>True
+            </td></tr><tr>
+              <td>False
+              </td><td>True
+              </td><td>True
+            </td></tr><tr>
+              <td>True
+              </td><td>True
+              </td><td>True
+        </td></tr></tbody></table>
+
+    </td></tr></tbody></table>
+
+
+    <h2>
+      <a href="#contents" name="transitions" class="backref">区切り線</a>
+    </h2>
+
+    <p>
+      (<a href="restructuredtext.html#transitions">詳細</a>)
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p>
+              <samp>
+              区切り線のマーカは、記号文字4つ以上からなる
+              <br />水平ラインです。</samp>
+            </p>
+            <p>
+              <samp>------------</samp>
+            </p>
+            <p>
+              <samp>区切り線は、セクションの最初や最後に置くべきでは
+              <br />ありませんし、区切り線を連続してならべるのも
+              <br />避けるべきです。</samp>
+            </p>
+          </td>
+          <td>
+            <p>
+              区切り線のマーカは、記号文字4つ以上からなる
+              水平ラインです。
+            </p>
+            <hr />
+            <p>
+              区切り線は、セクションの最初や最後に置くべきでは
+              ありませんし、区切り線を連続してならべるのも
+              避けるべきです。
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      区切り線は、小説や短いフィクションにおいて、
+      テキストの区分を示したり、
+      主題や時間、視点といったものの変化を表す
+      文と文との境界としてよく用いられます。
+      強調のためにも用いられます。
+    </p>
+      
+      
+      
+      
+    <h2>
+      <a href="#contents" name="explicit-markup" class="backref">明示的マークアップ</a>
+    </h2>
+
+    <p>
+      （脚注などの）表示位置が固定でない語句や、
+      （リンクやコメントなど）紙文書においては
+      表現されない語句や、（ディレクティブなどの）特別な処理が必要な
+      語句に対して、明示的マークアップが行われます。
+      明示的マークアップは、2つのピリオドと空白文字からはじめます。
+    </p>
+    
+    <h3>
+      <a href="#contents" name="footnotes" class="backref">脚注</a>
+    </h3>
+
+    <p>
+      (<a href="restructuredtext.html#footnotes">詳細</a>)
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>脚注参照&#160;[5]_.</samp>
+            <br /><samp>脚注は、ページの下部等へ</samp>
+            <br /><samp>まとめて配置されます。</samp>
+            <p>
+              <samp>..&#160;[5]&#160;番号つき脚注。</samp>
+              <br /><samp>&#160;&#160;&#160;<samp>]</samp> の後にはコロンを付けないこと。</samp>
+            </p>
+          </td>
+          <td>
+            脚注参照 <sup><a href="#5">5</a></sup>。
+            脚注は、ページの下部等へまとめて配置されます。
+            <table class="footnote">
+              <tbody>
+                <tr>
+                  <td colspan="2"><hr />
+                  <!-- <tr><td colspan="2">Footnotes: -->
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a name="5"><strong>[5]</strong></a>
+                  </td>
+                  <td> 
+                    番号つき脚注。
+                    <samp>]</samp> の後にはコロンを付けないこと。
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <samp>次の様にすれば、脚注の番号を自動に振ることもできます。</samp>
+            <br /><samp>[#]_&#160;および&#160;[#]_ 。</samp>
+            <p><samp>..&#160;[#]&#160;第一番目</samp>
+              <br /><samp>..&#160;[#]&#160;第二番目</samp>
+
+            </p><p><samp>番号付用のラベルを記述できます。例、</samp>
+            <br /><samp>[#fourth]_&#160;および&#160;[#third]_ 。</samp>
+
+            </p><p><samp>..&#160;[#third]&#160;別名&#160;third_</samp>
+            </p><p><samp>..&#160;[#fourth]&#160;別名&#160;fourth_</samp>
+            </p>
+          </td>
+          <td>
+            次の様にすれば、脚注の番号を自動に振ることもできます。
+            <sup><a href="#auto1">1</a></sup> および <sup><a href="#auto2">2</a></sup> 。
+            <p>
+              番号付用のラベルを記述できます。例、
+              <sup><a href="#fourth">4</a></sup> および <sup><a href="#third">3</a></sup> 。
+            </p>
+            <table class="footnote">
+              <tbody>
+                <tr>
+                  <td colspan="2"><hr />
+                  <!-- <tr><td colspan="2">Footnotes: -->
+                  </td>
+                </tr>
+                <tr>
+                  <td><a name="auto1"><strong>[1]</strong></a></td><td> 第一番目</td>
+                </tr>
+                <tr>
+                  <td><a name="auto2"><strong>[2]</strong></a></td><td> 第二番目</td>
+                </tr>
+                <tr>
+                  <td><a name="third"><strong>[3]</strong></a></td><td> 別名 <a href="#third">third</a></td>
+                </tr>
+                <tr>
+                  <td><a name="fourth"><strong>[4]</strong></a></td><td> 別名 <a href="#fourth">fourth</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <samp>脚注に記号を自動でつけることもできます。</samp>
+            <br /><samp>&#160;[*]_&#160;および&#160;[*]_ 。</samp>
+            <p><samp>..&#160;[*]&#160;第一番目の記号つき脚注</samp>
+              <br /><samp>..&#160;[*]&#160;これは2番目</samp>
+
+            </p>
+          </td>
+          <td>
+            脚注に記号を自動でつけることもできます。
+            <sup><a href="#symbol1">*</a></sup>
+            および <sup><a href="#symbol2">&#8224;</a></sup> 。
+            <table class="footnote">
+              <tbody>
+                <tr>
+                  <td colspan="2"><hr />
+                  <!-- <tr><td colspan="2">Footnotes: -->
+                  </td>
+                </tr>
+                <tr>
+                  <td><a name="symbol1"><strong>[*]</strong></a></td><td> 第一番目の記号つき脚注</td>
+                </tr>
+                <tr>
+                  <td><a name="symbol2"><strong>[&#8224;]</strong></a></td><td> これは2番目</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      自動で振る場合の脚注の番号は、参照の出現順ではなく、脚注自体の順によって
+      決まります。番号付用のラベルを付けない場合 ("<samp>[#]_</samp>") は、
+      参照と脚注の順が相対的に同じになるようにする必要があります。
+      記号つきの場合 ("<samp>[*]_</samp>") でも同様です。
+    </p>
+    
+    
+    <h3>
+      <a href="#contents" name="citations" class="backref">出典</a>
+    </h3>
+
+    <p>
+      (<a href="restructuredtext.html#citations">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>出典参照&#160;[CIT2002]_ 。</samp>
+            <br /><samp>出典は、ページの下部等へまとめて配置されます。</samp>
+            <p><samp>..&#160;[CIT2002]&#160;とある出典</samp>
+              <br /><samp>&#160;&#160;&#160;(たとえば雑誌など)</samp>
+
+            </p><p><samp>出典のラベルは、英数字、アンダーライン、ハイフン</samp>
+              <br /><samp>およびピリオドで構成されます。</samp>
+              <br /><samp>大小文字は区別されません。</samp>
+
+            </p><p><samp>出典参照が&#160;[this]_&#160;と書かれた場合、</samp>
+              <br /><samp>this_&#160;とすれば出典を参照できます。</samp>
+
+            </p><p><samp>..&#160;[this]&#160;こちら</samp>
+
+            </p>
+          </td>
+          <td>
+            出典参照 <a href="#cit2002">[CIT2002]</a> 。
+            出典は、ページの下部等へまとめて配置されます。
+            <p>
+              出典のラベルは、英数字、アンダーライン、ハイフンおよびピリオド
+              で構成されます。大小文字は区別されません。
+            </p>
+            <p>
+              出典参照が <a href="#this">[this]</a> と書かれた場合、
+              <a href="#this">this</a> とすれば出典を参照できます。
+            </p>
+            
+            <table class="footnote" border="0">
+              <tbody>
+                <tr>
+                  <td colspan="2"><hr />
+                    <!-- <tr><td colspan="2">Citations: -->
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a name="cit2002"><strong>[CIT2002]</strong></a>
+                  </td>
+                  <td>
+                     とある出典
+                     (たとえば雑誌など).
+                  </td>
+                </tr>
+                <tr>  
+                  <td>
+                    <a name="this"><strong>[this]</strong></a>
+                  </td>
+                  <td> 
+                    こちら
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h3>
+      <a href="#contents" name="hyperlink-targets" class="backref">リンクターゲット</a>
+    </h3>
+
+    <p>
+      (<a href="restructuredtext.html#hyperlink-targets">詳細</a>)
+    </p>
+    
+    <h4>
+      <a href="#contents" name="external-hyperlink-targets" class="backref">外部ターゲット</a>
+    </h4>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>外部リンクの例、&#160;Python_.</samp>
+            <p>
+              <samp>..&#160;_Python:&#160;http://www.python.org/</samp>
+            </p>
+          </td>
+          <td>
+            <table class="stripe" border="0" width="100%">
+              <tbody>
+                <tr class="head">
+                  <td><em>折りたたみ形式</em>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    外部リンクの例、
+                    <a href="http://www.python.org/">Python</a>.
+                  </td>
+                </tr>
+                <tr class="head">
+                  <td>
+                    <em>コールアウト形式</em>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    外部リンクの例、
+                    <a href="#labPython"><i>Python</i></a>.
+                    <table class="footnote" border="0">
+                      <tbody>
+                        <tr>
+                          <td colspan="2">
+                            <hr />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a name="labPython"><i>Python:</i></a>
+                          </td>
+                          <td> 
+                            <a href="http://www.python.org/">http://www.python.org/</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      "<em>折りたたみ形式</em>" は、HTML 文書で使われる典型的な表現方法です。
+      "<em>コールアウト形式</em>" は、プリントアウトする場合に適していて、
+      リンクは脚注と同様に明示的に示されます。
+    </p>
+    
+    <h4>
+      <a href="#contents" name="internal-hyperlink-targets" class="backref">内部ターゲット</a>
+    </h4>
+
+    <p></p><table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+         <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+      <tr>
+        <td>
+          <samp>内部相互参照の例、&#160;example_.</samp>
+          <p>
+            <samp>..&#160;_example:</samp>
+          </p>
+          <p>
+            <samp>ここ&#160;が、内部相互参照の例のターゲットになります。</samp>
+          </p>
+        </td>
+        <td>
+          <table class="stripe" border="0" width="100%">
+            <tbody>
+              <tr class="head">
+                <td><em>折りたたみ形式</em>
+                <!-- Note that some browsers may not like an "a" tag that -->
+                <!-- does not have any content, so we could arbitrarily   -->
+                <!-- use the first word as content - *or* just trust to   -->
+                <!-- luck!                                                -->
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  内部相互参照の例、 <a href="#example-foldin">example</a>
+                  <p>
+                    <a name="example-foldin">ここ</a>が、内部相互参照の例の
+                    ターゲットになります。
+                  </p>
+                </td>
+              </tr>
+              <tr class="head">
+                <td>
+                  <em>コールアウト形式</em>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  内部相互参照の例、 <a href="#example-callout">example</a>
+                  <p>
+                    <a name="example-callout"><i>example:</i></a>
+                    <br />ここ が、内部相互参照の例のターゲットになります。
+                  </p>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>
+      <a href="#contents" name="indirect-hyperlink-targets" class="backref">間接ターゲット</a>
+    </h4>
+
+    <p>
+      (<a href="restructuredtext.html#indirect-hyperlink-targets">詳細</a>)
+    </p>
+    
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>Python_&#160;は、
+            <br />`私のお気に入りのプログラム言語`__ です。</samp>
+            <p>
+              <samp>..&#160;_Python:&#160;http://www.python.org/</samp>
+            </p>
+            <p>
+              <samp>__&#160;Python_</samp>
+            </p>
+          </td>
+          <td>
+            <p><a href="http://www.python.org/">Python</a> は、
+            <a href="http://www.python.org/">私のお気に入りのプログラム言語</a>
+            です。
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      "<samp>__</samp>" から始まる2番目のリンクターゲットは、
+      間接ターゲットでもあり、<b>無名ターゲット</b>でもあります。
+      本文テキスト中で、アンダースコア2つの接尾辞は、<b>無名参照</b>
+      を示すのに使われます。
+      無名ターゲットに対しては、参照テキストを繰り返す必要がありません。
+      参照テキストが長かったりする場合に便利です。しかし、
+      対応を取ることが難しくなるので、ターゲットと参照とをあまり離すべきでは
+      ありません。
+    </p>
+    
+    <h4>
+      <a href="#contents" name="implicit-hyperlink-targets" class="backref">暗黙ターゲット</a>
+    </h4>
+
+    <p>
+      (<a href="restructuredtext.html#implicit-hyperlink-targets">詳細</a>)
+    </p>
+    
+    <p>
+      各章のタイトル、脚注および出典は、自動的にリンクターゲットに
+      なります（タイトル名や脚注ラベル、出典ラベルがリンク名と
+      なります。）
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead><tr>
+        <th width="50%">プレーンテキスト
+        </th><th width="50%">変換結果の例
+        </th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>タイトルもターゲット</samp>
+            <br /><samp>=======================</samp>
+            <br /><samp>暗黙ターゲットの例、</samp>
+            <br /><samp>`タイトルもターゲット`_ 。</samp>
+          </td>
+          <td>
+            <font size="+2"><strong><a name="title">タイトルもターゲット</a></strong></font>
+            <p>
+            暗黙ターゲットの例、 <a href="#title">タイトルもターゲット</a> 。
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>
+      <a href="#contents" name="directives" class="backref">ディレクティブ</a>
+    </h3>
+
+    <p>
+      (<a href="restructuredtext.html#directives">詳細</a>)
+    </p>
+    
+    <p>
+      ディレクティブは、汎用の拡張機構で、
+      ひとつの記法で様々な要素をサポートできるように
+      するための手段です。
+      標準でサポートされているディレクティブについては、
+      <a href="directives.html">
+      reStructuredText ディレクティブ</a>を参照してください。
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>画像の例、</samp>
+            <p><samp>..&#160;image::&#160;images/ball1.gif</samp>
+            </p>
+          </td>
+          <td>
+            画像の例、
+            <p>
+              <img src="images/ball1.gif" alt="ball1" />
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>
+      <a href="#contents" name="substitution-references-and-definitions" class="backref">
+      代入参照とその定義</a>
+    </h3>
+
+    <p>
+      (<a href="restructuredtext.html#substitution-definitions">詳細</a>)
+    </p>
+    <p>
+      「代入」は、インラインなディレクティブとでも呼べるもので、
+      任意の要素をテキスト中に挿入することができます。
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <samp>
+            |biohazard|&#160;シンボルは、
+            医療廃棄物を収めたコンテナに
+            表示されるマークです。
+            </samp>
+            <p><samp>
+              ..&#160;|biohazard|&#160;image::&#160;biohazard.png
+            </samp></p>
+          </td>
+          <td>
+            <p>
+            <img src="images/biohazard.png" alt="biohazard" align="bottom" /> シンボルは、
+            医療廃棄物を収めたコンテナに表示されるマークです。
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h3>
+      <a href="#contents" name="comments" class="backref">コメント</a>
+    </h3>
+
+    <p>
+      (<a href="restructuredtext.html#comments">詳細</a>)
+    </p>
+    
+    <p>
+    明示的マークアップの後に記述されるテキストで、
+    上記の要素のどれにも該当しないものは、コメントになります。
+    </p>
+    <table class="disc" border="1" width="100%">
+      <thead>
+        <tr>
+          <th width="50%">プレーンテキスト
+          </th><th width="50%">変換結果の例
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><samp>..&#160;このテキストは表示されません</samp>
+            <br /><samp>&#160;&#160;&#160;しかし、たとえばHTMLでは、</samp>
+            <br /><samp>&#160;&#160;&#160;コメントとして描画されます。)</samp>
+          </td>
+          <td>&#160;
+            <!-- このテキストは表示されません      -->
+            <!-- (しかし、たとえばHTMLでは、       -->
+            <!-- コメントとして描画されます。)   -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <samp>空のコメントの後のブロックは</samp>
+            <br /><samp>コメントにはなりません。</samp>
+            <br /><samp>..</samp>
+            <br /><samp>&#160;&#160;ですので、このブロックはインデント</samp>
+            <br /><samp>&#160;&#160;されていますが、表示されます。</samp>
+          </td>
+          <td>
+            空のコメントの後のブロックは
+            コメントにはなりません。
+            <blockquote>
+              ですので、このブロックはインデント
+              されていますが、表示されます。
+            </blockquote>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <h2>
+      <a href="#contents" name="getting-help" class="backref">助けを得たい場合は</a>
+    </h2>
+
+    <p>
+      Docutils や reStructuredText についての質問があったり、
+      何らかの助力が必要なユーザは、<a href="http://lists.sourceforge.net/lists/listinfo/docutils-users">
+      Docutils ユーザ メーリングリスト（英語）</a>へ
+      <a href="mailto:docutils-users@lists.sourceforge.net">メールを出してみる</a>
+      と良いでしょう。
+      <a href="http://docutils.sourceforge.net/">Docutils プロジェクトのウェブサイト</a>にも
+      詳しい情報が記載されています。
+    </p>
+    
+  </body>
+</html>

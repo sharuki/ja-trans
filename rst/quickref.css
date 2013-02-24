@@ -1,0 +1,127 @@
+body { 
+  line-height: 1.5em 
+}
+
+h1, h2, h3, h4 {
+  font-family: "ＭＳ Ｐゴシック", Osaka, sans-serif;
+  font-weight: bold; }
+
+h1 {
+	margin-top: 0em;
+    font-size: 170%; }
+    
+h2 {
+	margin-top: 2em;
+    font-size: 150%; }
+    
+h3 {
+	margin-top: 1em;
+    font-size: 125%; }
+    
+h4 {
+	margin-top: 1em;
+    font-size: 100%; }
+
+code, pre, tt {
+	font-family: 'ＭＳ ゴシック', '平成角ゴシック', monospace;
+	font-size: 95%;
+	line-height: 1.3em; 
+}
+
+table {
+	margin-top: 0.5em ;
+	margin-bottom: 0.5em 
+}
+
+td, th {
+	padding-left: 0.5em ;
+	padding-right: 0.5em ;
+	vertical-align: top;
+	line-height: 1.5em; 
+}
+
+/* ********************************* */
+
+a.backref { 
+	text-decoration: none ; color: black 
+}
+
+div.line-block { 
+	display: block 
+}
+
+div.line-block div.line-block { 
+	margin-left: 1.5em 
+}
+
+/* ********************************* */
+
+h1 span.r {
+	font-style: italic
+}
+
+h1 span.s {
+	font-size: 150%
+}
+
+h1 span.t {
+	font-style: italic
+}
+
+table.disc {
+	border-collapse: collapse;
+	background-color: #ffffcc;
+}
+
+table.disc thead tr {
+	background-color: #99ccff;
+}
+
+
+table.disc, table.disc td, table.disc th {
+	border: 1px  solid  #808080;
+}
+
+table.gtable {
+	border-collapse: separate;
+	background-color: #ffffcc;
+}
+
+table.gtable thead tr {
+	background-color: #99ccff;
+}
+
+
+table.gtable, table.gtable td, table.gtable th {
+	border: 1px  solid  #808080;
+}
+
+table.stable {
+	border-collapse: separate;
+	background-color: #ffffcc;
+}
+
+table.stable thead tr {
+	background-color: #99ccff;
+}
+
+
+table.stable, table.stable td, table.stable th {
+	border: 1px  solid  #808080;
+}
+
+table.footnote, table.footnote td, table.footnote th {
+	border: none;
+}
+
+table.stripe, table.stripe td, table.stripe th {
+	border: none;
+}
+
+table.stripe tr.head {
+	background-color: #99ccff;
+}	
+
+table.list, table.list td, table.list th {
+	border: none;
+}

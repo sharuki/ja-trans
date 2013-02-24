@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.3.3: http://docutils.sourceforge.net/" />
+<title>ReStructuredText 入門</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+<h1 class="title">ReStructuredText 入門</h1>
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+<tr class="field"><th class="docinfo-name">著者:</th><td class="field-body">Richard Jones</td>
+</tr>
+<tr class="field"><th class="docinfo-name">英語原版:</th><td class="field-body"><a class="reference" href="http://docutils.sourceforge.net/docs/user/rst/quickstart.html">A ReStructuredText Primer</a></td>
+</tr>
+<tr class="field"><th class="docinfo-name">バージョン:</th><td class="field-body">1.17</td>
+</tr>
+<tr class="field"><th class="docinfo-name">著作権:</th><td class="field-body">This document has been placed in the public domain.</td>
+</tr>
+<tr class="field"><th class="docinfo-name">翻訳者:</th><td class="field-body">瀬戸山春輝 <a class="reference" href="mailto:haruki&#64;planewave.org">haruki&#64;planewave.org</a></td>
+</tr>
+<tr class="field"><th class="docinfo-name">翻訳著作権:</th><td class="field-body"><a class="reference" href="http://creativecommons.org/licenses/by/2.0/jp/">クリエイティブ・コモンズ 帰属ライセンス</a></td>
+</tr>
+</tbody>
+</table>
+<div class="document" id="restructuredtext">
+<div class="contents topic" id="contents">
+<p class="topic-title first"><a name="contents">Contents</a></p>
+<ul class="simple">
+<li><a class="reference" href="#id4" id="id25" name="id25">構造</a></li>
+<li><a class="reference" href="#id6" id="id26" name="id26">テキストの装飾</a></li>
+<li><a class="reference" href="#id9" id="id27" name="id27">リスト</a></li>
+<li><a class="reference" href="#id13" id="id28" name="id28">フォーマット済みテキスト</a></li>
+<li><a class="reference" href="#id15" id="id29" name="id29">セクション</a><ul>
+<li><a class="reference" href="#id17" id="id30" name="id30">文書のタイトルとサブタイトル</a></li>
+</ul>
+</li>
+<li><a class="reference" href="#id18" id="id31" name="id31">画像</a></li>
+<li><a class="reference" href="#id22" id="id32" name="id32">その他は?</a></li>
+</ul>
+</div>
+<p>以下の文章中に &quot;(<a class="reference" href="quickref.html">quickref</a>)&quot; という形式のリンクがあります。これは、 
+<a class="reference" href="quickref.html">Quick reStructuredText</a> ユーザリファレンスへの相対リンクです。このリンクが
+切れている場合は、 <a class="reference" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">オンラインのクイックリファレンス</a> を参照してください。</p>
+<div class="section" id="id4">
+<h1><a class="toc-backref" href="#id25" name="id4">構造</a></h1>
+<p>まずはじめに、&quot;Structured Text&quot; （構造化されたテキスト）という呼び方には、
+いくぶん不適切なところがあると指摘しておきます。実際には、首尾一貫したパターンを使う 
+&quot;Relaxed Text&quot; （形式ばらないテキスト）とでも呼ぶべきものです。そのパターンを 
+HTML コンバータで変換することで、WEB ブラウザで扱えるような「非常に構造化された
+テキスト」が生成されるのです。</p>
+<p>最も分かり易くて基本的なパターンは、 <strong>パラグラフ（段落）</strong> (<a class="reference" href="quickref.html#paragraphs">quickref</a>) です。
+（1つ以上の）空行で区分されたテキストのひとかたまりが、パラグラフとなります。
+パラグラフは等しいインデントでなければなりません。つまり、パラグラフの
+各行は左側が揃っていなければならないということです。また、インデントされた
+パラグラフは、引用のパラグラフに変換されます。
+たとえば、</p>
+<pre class="literal-block">
+これはパラグラフです。とても
+短いですね。
+
+   このパラグラフは、インデントされたテキストで、
+   通常、他のテキストの引用として扱われます。
+
+これもパラグラフです。
+</pre>
+<p>結果は、</p>
+<blockquote>
+<p>これはパラグラフです。とても
+短いですね。</p>
+<blockquote>
+このパラグラフは、インデントされたテキストで、
+通常、他のテキストの引用として扱われます。</blockquote>
+<p>これもパラグラフです。</p>
+</blockquote>
+</div>
+<div class="section" id="id6">
+<h1><a class="toc-backref" href="#id26" name="id6">テキストの装飾</a></h1>
+<p>(<a class="reference" href="quickref.html#inline-markup">quickref</a>)</p>
+<p>パラグラフやその他のテキストでは、 <em>斜体</em> としたい部分を &quot;<tt class="literal"><span class="pre">*斜体*</span></tt>&quot; 
+という形式で、 <strong>太字</strong> としたい部分を &quot;<tt class="literal"><span class="pre">**太字**</span></tt>&quot; という形式で
+マークアップします。</p>
+<p>固定スペースで表示させたい場合は、&quot;<tt class="literal"><span class="pre">``2重バッククォート``</span></tt>&quot; を使います。
+2重バッククォートの内部では、文字装飾は行われません。
+ですから、アスタリスク &quot;<tt class="literal"><span class="pre">*</span></tt>&quot; などはそのままになります。</p>
+<p>「特殊」文字をテキスト中で使いたい場合も、reStructuredText はスマートにできており、
+問題はありません。たとえば、アスタリスク * を上手く扱いたい場合を例に取ります。
+*アスタリスクに挟まれた* テキストを斜体に <strong>したくない</strong> ときには、
+&quot;<tt class="literal"><span class="pre">\*</span></tt>&quot; (<a class="reference" href="quickref.html#escaping">quickref</a>) と言うようにバックスラッシュ（日本語環境では円記号）を
+前に置くか、2重バッククォートで以下のように囲むかして、
+そのアスタリスクが特殊ではないことを示します。</p>
+<pre class="literal-block">
+``\*``
+</pre>
+</div>
+<div class="section" id="id9">
+<h1><a class="toc-backref" href="#id27" name="id9">リスト</a></h1>
+<p>リストには、 <strong>番号付き</strong> 、 <strong>箇条書き</strong> 、 <strong>定義</strong> の3種類があります。
+すべてのリストは、パラグラフの左側を、リストの要素の最初の行とあわせることで、
+複数パラグラフやサブリストを扱うことができます。</p>
+<p>リストは、新しいパラグラフの始まりとなります。すなわち、空行の後にリストを書く
+必要があります。</p>
+<dl>
+<dt><strong>番号付き</strong> リスト (数、文字もしくはローマ数字、 <a class="reference" href="quickref.html#enumerated-lists">quickref</a>)</dt>
+<dd><p>行を、ピリオド &quot;.&quot; か閉じ括弧 &quot;)&quot; を付けた、もしくは括弧で囲んだ &quot;( )&quot;
+数字か文字で始めます。以下の形式のすべてが認識されます。</p>
+<pre class="literal-block">
+1. 数字
+
+A. 大文字の英字
+   複数行も書けます。
+
+   複数のパラグラフも！
+
+a. 小文字の英字
+
+   3. 違う番号から始まるサブリスト
+   4. 番号が適切な順番になっているか確認してください。
+
+I. 大文字のローマ数字
+
+i. 小文字のローマ数字
+
+(1) 数字
+
+1) 数字
+</pre>
+<p>変換結果はこの通り(注意。ブラウザによっては、これらすべての形式の
+番号付きリストがサポートされていない場合もあります。ですので、
+上のように指定した効果が完全には表示されていないかも知れません）。</p>
+<ol class="arabic simple">
+<li>数字</li>
+</ol>
+<ol class="upperalpha">
+<li><p class="first">大文字の英字
+複数行も書けます。</p>
+<p>複数のパラグラフも！</p>
+</li>
+</ol>
+<ol class="loweralpha simple">
+<li>小文字の英字<ol class="arabic" start="3">
+<li>違う番号から始まるサブリスト</li>
+<li>番号が適切な順番になっているか確認してください。</li>
+</ol>
+</li>
+</ol>
+<ol class="upperroman simple">
+<li>大文字のローマ数字</li>
+</ol>
+<ol class="lowerroman simple">
+<li>小文字のローマ数字</li>
+</ol>
+<ol class="arabic simple">
+<li>数字</li>
+</ol>
+<ol class="last arabic simple">
+<li>数字</li>
+</ol>
+</dd>
+<dt><strong>箇条書き</strong> リスト (<a class="reference" href="quickref.html#bullet-lists">quickref</a>)</dt>
+<dd><p>番号つきリストと似ていますが、行を &quot;-&quot; または &quot;+&quot;, &quot;*&quot; の行頭記号で
+始めます。</p>
+<pre class="literal-block">
+* 行頭記号 &quot;*&quot;
+
+  - 行頭記号 &quot;-&quot;
+
+    + サブリスト
+
+  - 複数アイテム
+</pre>
+<p>変換結果はこの通り。</p>
+<ul class="last simple">
+<li>行頭記号 &quot;*&quot;<ul>
+<li>行頭記号 &quot;-&quot;<ul>
+<li>サブリスト</li>
+</ul>
+</li>
+<li>複数アイテム</li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt><strong>定義</strong> リスト (<a class="reference" href="quickref.html#definition-lists">quickref</a>)</dt>
+<dd><p>上の２つとは違って、定義リストは用語とその定義からなります。定義リストの様式は、</p>
+<pre class="literal-block">
+何を
+  定義リストは用語と定義を関連付けます。
+
+*どのように*
+  用語は1行に収まるフレーズです。定義は、１つもしくは複数のパラグラフや
+  その他の要素からなり、用語よりも深くインデントします。
+  用語と定義との間に空行を入れてはいけません。
+</pre>
+<p>変換結果はこうなります。</p>
+<dl class="last">
+<dt>何を</dt>
+<dd>定義リストは用語と定義を関連付けます。</dd>
+<dt><em>どのように</em></dt>
+<dd>用語は1行に収まるフレーズです。定義は、１つもしくは複数のパラグラフや
+その他の要素からなり、用語よりも深くインデントします。
+用語と定義との間に空行を入れてはいけません。</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="id13">
+<h1><a class="toc-backref" href="#id28" name="id13">フォーマット済みテキスト</a></h1>
+<p>(<a class="reference" href="quickref.html#literal-blocks">quickref</a>)</p>
+<p>（コードのサンプルなど）フォーマット済みで、文字装飾を行ないたくないテキストを
+扱う場合は、その直前のパラグラフを &quot;<tt class="literal"><span class="pre">::</span></tt>&quot; で終えてください。フォーマット済みの
+ブロックは、インデントがそのフォーマット済みブロックの直前のパラグラフと同じに
+なったところで終わります。例を示しましょう。:</p>
+<pre class="literal-block">
+サンプル::
+
+    空白文字や空行やすべてのマークアップ（たとえば *これ* や \これ)は
+    そのままとなります。
+  インデントレベルを下げました。
+  (少しだけですが)
+
+サンプル終わり
+</pre>
+<p>変換結果を示します。</p>
+<blockquote>
+<p>サンプル:</p>
+<pre class="literal-block">
+  空白文字や空行やすべてのマークアップ（たとえば *これ* や \これ)は
+  そのままとなります。
+インデントレベルを下げました。
+(少しだけですが)
+</pre>
+<p>サンプル終わり</p>
+</blockquote>
+<p>&quot;<tt class="literal"><span class="pre">::</span></tt>&quot; だけのパラグラフは、出力からは削除されます。:</p>
+<pre class="literal-block">
+::
+
+    フォーマット済みテキストです。
+    直前の &quot;::&quot; だけのパラグラフは削除されます。
+</pre>
+<p>変換結果はこの通り。</p>
+<pre class="literal-block">
+フォーマット済みテキストです。
+直前の &quot;::&quot; だけのパラグラフは削除されます。
+</pre>
+</div>
+<div class="section" id="id15">
+<h1><a class="toc-backref" href="#id29" name="id15">セクション</a></h1>
+<p>(<a class="reference" href="quickref.html#section-structure">quickref</a>)</p>
+<p>長い文章をセクション（章など）に別けるには、 <strong>セクションヘッダ</strong> を使います。
+セクションヘッダとは、1行のテキストを、アンダーラインで、またはアンダーラインと
+オーバーラインで装飾したものです。ラインには、ダッシュ &quot;<tt class="literal"><span class="pre">-----</span></tt>&quot; や
+等号 &quot;<tt class="literal"><span class="pre">======</span></tt>&quot; 、チルダ &quot;<tt class="literal"><span class="pre">~~~~~~</span></tt>&quot; などの非アルファベットの文字
+<tt class="literal"><span class="pre">=</span> <span class="pre">-</span> <span class="pre">`</span> <span class="pre">:</span> <span class="pre">'</span> <span class="pre">&quot;</span> <span class="pre">~</span> <span class="pre">^</span> <span class="pre">_</span> <span class="pre">*</span> <span class="pre">+</span> <span class="pre">#</span> <span class="pre">&lt;</span> <span class="pre">&gt;</span></tt> を使用します。同じ文字を使用していても、
+アンダーラインのみのものと、アンダーラインとオーバーライン両方を使ったものは
+区別されます。アンダーラインやオーバーラインは、少なくともタイトルと同じ長さに
+してください。同じスタイルで装飾されたすべてのセクションは、同じレベルだと
+みなされますので、首尾一貫性を保つようにしてください。</p>
+<pre class="literal-block">
+第1章 タイトル
+==============
+
+セクション 1.1 タイトル
+-----------------------
+
+サブセクション 1.1.1 タイトル
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+セクション 1.2 タイトル
+-----------------------
+
+第2章 タイトル
+==============
+</pre>
+<p>変換結果は、擬似 XML で表すと以下のようになります。</p>
+<pre class="literal-block">
+&lt;section&gt;
+    &lt;title&gt;
+        第1章 タイトル
+    &lt;section&gt;
+        &lt;title&gt;
+            セクション 1.1 タイトル
+        &lt;section&gt;
+            &lt;title&gt;
+                サブセクション 1.1.1 タイトル
+    &lt;section&gt;
+        &lt;title&gt;
+            セクション 1.2 タイトル
+&lt;section&gt;
+    &lt;title&gt;
+        第2章 タイトル
+</pre>
+<p>（この擬似 XML は、ネストをインデントで表し、終了タグがありません。セクションは
+引用のブロック中に置けないため、他の例と異なり、実際の変換結果を示すことが
+できませんでした。具体的な例としては、この文書自体のソーステキストと変換結果とを
+比較してみてください。）</p>
+<p>セクションヘッダは、その名前をリンクのターゲットとして使用できます。リスト_ 
+ヘッダにリンクしたい場合は、&quot;<tt class="literal"><span class="pre">リスト_</span></tt>&quot;と書きます。ヘッダが、 
+<a class="reference" href="#restructuredtext">ReStructuredText 入門</a> の様にスペースを含む場合は、
+&quot;<tt class="literal"><span class="pre">`ReStructuredText</span> <span class="pre">入門`_</span></tt>&quot; とクオートする必要があります。</p>
+<div class="section" id="id17">
+<h2><a class="toc-backref" href="#id30" name="id17">文書のタイトルとサブタイトル</a></h2>
+<p>文書全体のタイトルとセクションのタイトルとは区別され、異なった形式に変換
+されます（たとえば、HTML ライタはデフォルトで、文書全体のタイトルを中央寄せに
+表示します）。</p>
+<p>reStructuredText において文書タイトルを記述するには、文書の最初に、ユニークな
+（文書の他の部分に出てこない）装飾形式で記述します。文書のサブタイトルを示すには、
+文書タイトルの直後にまた別の形式を使用します。例を示します。</p>
+<pre class="literal-block">
+==============
+ 文書タイトル
+==============
+--------------
+ サブタイトル
+--------------
+
+セクションのタイトル
+====================
+
+...
+</pre>
+<p>ここで、「文書タイトル」と「セクションのタイトル」とは同じ文字で装飾されていますが、
+まったく異なるものとみなされています。見た目の美しさの観点から、（アンダーライン
+だけでなく）アンダーラインとオーバーライン両方を使う装飾が使われています。</p>
+</div>
+</div>
+<div class="section" id="id18">
+<h1><a class="toc-backref" href="#id31" name="id18">画像</a></h1>
+<p>(<a class="reference" href="quickref.html#directives">quickref</a>)</p>
+<p>文書に画像を挿入するには、 <tt class="literal"><span class="pre">image</span></tt> <a class="reference" href="../../ref/rst/directives.html">ディレクティブ</a> を使います。
+たとえば、</p>
+<pre class="literal-block">
+.. image:: images/biohazard.png
+</pre>
+<p>変換結果は、</p>
+<p><img alt="images/biohazard.png" src="images/biohazard.png" /></p>
+<p><tt class="literal"><span class="pre">images/biohazard.png</span></tt> の部分が、ドキュメントで表示させたい画像のファイル名
+です。イメージについて（形式やサイズなどの）制限はありません。画像が HTML で
+表示される場合、追加の情報を付け加えることもできます。</p>
+<pre class="literal-block">
+.. image:: images/biohazard.png
+   :height: 100
+   :width: 200
+   :scale: 50
+   :alt: alternate text
+</pre>
+<p>詳しい情報は、 <a class="reference" href="../../ref/rst/directives.html#images">画像ディレクティブの解説</a> を参照してください。</p>
+</div>
+<div class="section" id="id22">
+<h1><a class="toc-backref" href="#id32" name="id22">その他は?</a></h1>
+<p>この文書では、入門として、reStructuredText の最も一般的な機能について紹介
+しました。しかし、reStructuredText には、もっと多くの機能があります。この文書の
+次には、ユーザリファレンスである <a class="reference" href="quickref.html">Quick reStructuredText</a> を参照すると
+良いでしょう。完全な詳細を知るには、 <a class="reference" href="../../ref/rst/restructuredtext.html">reStructuredText Markup Specification</a> 
+を参照してください。</p>
+<p>Docutils および reStructuredText について質問があったり、援助が必要な場合は、
+<a class="reference" href="http://lists.sourceforge.net/lists/listinfo/docutils-users">Docutils-Users mailing list</a> に、 <a class="reference" href="mailto:docutils-users&#64;lists.sourceforge.net">メールを出して</a> みてください。
+<a class="reference" href="http://docutils.sourceforge.net/">Docutils project web site</a> にも、情報が掲載されています。</p>
+<table class="footnote" frame="void" id="id23" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a name="id23">[1]</a></td><td>相対リンクが切れている場合は、こちらのオンラインドキュメントを参照ください。
+<a class="reference" href="http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html">http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html</a>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
